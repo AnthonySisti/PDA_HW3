@@ -181,14 +181,10 @@ Var_Random_Intercept[which(is.na(Var_Random_Intercept$Name)),"Name"] = ""
 
 kable_styling(kable(Var_Random_Intercept, caption = "Random Effects: Random Intercept Model"),
               latex_options = "hold_position")
-```
 
-<!-- ```{r, results='asis'} -->
-<!-- stargazer(Random_Intercept, header=FALSE, type='latex') -->
-
-<!-- ``` -->
 
 We examine the effect of adding the within patient factors 'Time' and 'Average Temperature' to level one of our multi-level model as predictors of 'Pain'. Using analysis of variance, we compare these models to just the random intercept.
+
 
 ```{r}
 library(lme4)
@@ -212,10 +208,10 @@ kable_styling(kable(RandInt_Time, caption = "ANOVA for Level 1 Predictors"),
 kable(RandInt_Temp)
 ```
 
+
 Adding 'Time' to level one of the model is a significant improvement, while adding 'Temperature' is shown to be insignificant at the 5\% level. Including interaction between them also does not add to the model wither, per ANOVA. We continue with 'Time' as our level one predictor of 'Pain'
 
 We now examine how letting the coefficient for 'Time' vary between patient as a random effect influences the model. The ANOVA table comparing the fixed and random 'Time' models is shown below.
-
 
 
 ```{r}
@@ -314,6 +310,7 @@ Slope_Intercept_Fit = lmer(Pain ~ 1 + Time + nsaid*Time + nsaid + (1 + Time | ID
                            data=Cleaned_Data,REML=F)
 
 ```
+
 
 After comparing every possible combination of patient level factors, we determine that the model in which $x_i$ and $z_i$ indicate whether or not a patient uses NSAIDs is the most effective. We continue building our model with the NSAID indicator included in both of our level two regressions. Next, we run loops that test the effectiveness of adding extra patient level factors to level two ,adding interactions with the NSAID indicator at level two, or adding additional fixed or random effects at level two. The loops use ANOVA to determine if there is a significant benefit to adding these factors to the model.
 
