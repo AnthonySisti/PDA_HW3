@@ -8,4 +8,4 @@ The focus of this assignment is hierarchical models. Students were asked to pred
 
 # Code
 
-See attached files and code for a completed version of this assignment.
+See attached files and code for a completed version of this assignment. Both PDF and RMarkdown are included.
